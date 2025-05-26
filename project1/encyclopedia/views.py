@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 from . import util
 
 from markdown2 import Markdown
