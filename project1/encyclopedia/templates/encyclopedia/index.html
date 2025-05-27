@@ -5,12 +5,24 @@
 {% endblock %}
 
 {% block body %}
-    <h1>All Pages</h1>
+    <h1>
+        {% if q %} Related search results for "{{ q }}"
+        {% else %} All Pages
+        {% endif %}
+    </h1>
 
     <ul>
-        {% for entry in entries %}
-            <li>{{ entry }}</li>
-        {% endfor %}
+        {% if q %}
+            {% for entry in entries %}
+                {% if q in entry %}
+                    <li><a href='/{{ entry }}'>{{ entry }}</a></li>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for entry in entries %}
+                <li><a href='/{{ entry }}'>{{ entry }}</a></li>
+            {% endfor %}
+        {% endif %}
     </ul>
 
 {% endblock %}
