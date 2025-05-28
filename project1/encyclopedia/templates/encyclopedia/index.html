@@ -6,23 +6,21 @@
 
 {% block body %}
     <h1>
-        {% if q %} Related search results for "{{ q }}"
+        {% if q %} Related search results for "{{ q }}" :
         {% else %} All Pages
         {% endif %}
     </h1>
 
     <ul>
-        {% if q %}
-            {% for entry in entries %}
-                {% if q in entry %}
-                    <li><a href='/{{ entry }}'>{{ entry }}</a></li>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            {% for entry in entries %}
-                <li><a href='/{{ entry }}'>{{ entry }}</a></li>
-            {% endfor %}
-        {% endif %}
+        {% for entry in entries %}
+            <li><a href='/{{ entry }}'>{{ entry }}</a></li>
+        {% endfor %}
     </ul>
+
+    {% if resultmessage %}
+    <body>
+        {{ resultmessage }}
+    </body>
+    {% endif %}
 
 {% endblock %}
