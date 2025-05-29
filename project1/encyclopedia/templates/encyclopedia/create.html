@@ -9,17 +9,24 @@
         Create New Page
     </h1>
 
-    <form>
+    {% if createmessage %}
+        <body>
+            {{ createmessage }}
+        </body>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
         <div>
             <label for="title">Title:</label>
             <input type="text" name="title">
         </div>
         <div>
             <div>
-                <label for="content">Page Content (in Markdown):</label>
+                <label for="content">Page Content (in Markdown, including "# title"):</label>
             </div>
-            <textarea id="mytext" name="title"></textarea>
+            <textarea name="content"></textarea>
         </div>
-        <input type="submit">
+        <button type="submit">Submit</button>
     </form>
 {% endblock %}

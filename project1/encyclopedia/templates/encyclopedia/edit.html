@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Edit '{{ title }}' Page:
+    </h1>
+
+    {% if createmessage %}
+        <body>
+            {{ createmessage }}
+        </body>
+    {% endif %}
+
+    <form href="{{ title }}"method="post">
+        {% csrf_token %}
+        <div>
+            <label for="content">Page Content (in Markdown):</label>
+        </div>
+        <textarea name="content">{{ content }}</textarea>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}
